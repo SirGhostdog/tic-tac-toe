@@ -1,13 +1,25 @@
-const gameBoard = {
-    board: [],
+const gameBoard =(function() {
+markX = "X",
+markO = "O",
 
-    player1: " ",
-    player2: " ",
+gameGrid = {
+    topLeft: " ",
+    topMid: " ",
+    topRight: " ",
+    midLeft: " ",
+    midMid: " ",
+    midRight: " ",
+    botLeft: " ",
+    botMid: " ",
+    botRight: " ",
+},
 
-    logic: function() {
-        const mark = " ";
+// topLeft = markX,
+// topMid = markX,
+// topRight = markX,
 
-    
-    }
+    if (topLeft && topMid && topRight == "X"){
+    console.log("Win")
+        }
+})();
 
-}
