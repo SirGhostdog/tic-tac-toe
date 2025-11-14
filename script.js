@@ -25,8 +25,26 @@ function gameController() {
   let playerTwo = {
     name: "Two",
     mark: markO,
+  };
+
+  function placeMark(a, b, player){
+    if(player == playerOne) {
+      return grid[a][b] = playerOne.mark
+    } else{
+      return grid[a][b] = playerTwo.mark
+    }
   }
 
+  
+  // grid.forEach(element =>{
+  //   if (element == 'X' || 'O'){
+  //     console.log ("try another sqaure")
+  //     displayGrid(grid)
+  //   } else {
+  //     placeMark(1,1,playerOne)
+  //     displayGrid (grid)
+  //   }
+  // })
   
 }
 
