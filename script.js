@@ -28,24 +28,20 @@ function gameController() {
   };
 
   function placeMark(a, b, player){
-    if(player == playerOne) {
+    if(player == playerOne && grid[a][b] == '-') {
       return grid[a][b] = playerOne.mark
-    } else{
+    } else if (player == playerTwo && grid[a][b] == '-'){
       return grid[a][b] = playerTwo.mark
+    } else {
+      console.log("try another square")
     }
   }
 
-  
-  // grid.forEach(element =>{
-  //   if (element == 'X' || 'O'){
-  //     console.log ("try another sqaure")
-  //     displayGrid(grid)
-  //   } else {
-  //     placeMark(1,1,playerOne)
-  //     displayGrid (grid)
-  //   }
-  // })
-  
+  // placeMark(2, 2, playerTwo);
+  // placeMark(1, 1, playerTwo);
+  // placeMark(0, 0, playerTwo);
+  // placeMark(0, 0, playerOne);
+  displayGrid(grid);
 }
 
 gameController();
