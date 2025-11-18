@@ -17,17 +17,25 @@ function displayGrid (board) {
 
 function gameController() {
 
-  let playerOne = {
-    name: "One",
-    mark: markX,
-  }
+  let playerOneName ="One"
 
-  let playerTwo = {
-    name: "Two",
-    mark: markO,
+  let playerOne = {
+
+    name: playerOneName,
+    mark: markX,
+
   };
 
-  function placeMark(a, b, player){
+  let playerTwoName = "Two"
+
+  let playerTwo = {
+
+    name: playerTwoName,
+    mark: markO,
+
+  };
+
+  const placeMark = (a, b, player) => {
     if(player == playerOne && grid[a][b] == '-') {
       return grid[a][b] = playerOne.mark
     } else if (player == playerTwo && grid[a][b] == '-'){
@@ -35,13 +43,34 @@ function gameController() {
     } else {
       console.log("try another square")
     }
+  };
+
+  let activePlayer = playerOne
+
+  const switchPlayer = () => {
+    activePlayer = (activePlayer === playerOne) ? playerTwo : playerOne
+  };
+  const getActivePlayer = () => activePlayer;
+
+  const printNewRound = () => {
+    displayGrid(grid);
+    console.log(`${getActivePlayer().name}'s turn.`)
   }
 
-  // placeMark(2, 2, playerTwo);
-  // placeMark(1, 1, playerTwo);
-  // placeMark(0, 0, playerTwo);
-  // placeMark(0, 0, playerOne);
-  displayGrid(grid);
+  const playRound = (a, b) => {
+    placeMark(a, b, getActivePlayer())
+    switchPlayer();
+    printNewRound();
+  }
+
+  printNewRound();
+
+  return {
+    playRound,
+    getActivePlayer,
+  }
 }
 
-gameController();
+let game = gameController();
+game.playRound(1,2);
+game.playRound(1,1);
