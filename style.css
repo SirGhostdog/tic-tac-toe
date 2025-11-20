@@ -1,6 +1,50 @@
-html{
+body{
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
+}
+
+#header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(161, 161, 161);
+    height: 75px;
+    color: rgb(137, 35, 35);
+    font-size: 30px;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#player-container{
+    display: flex;
+}
+
+
+.players{
+    font-size: 28px;
+    margin: 30px;
+}
+
+/* #one,
+#two{
+    display: flex;
+    flex-direction: column;
+} */
+
+#one{
+    color: red;
+}
+
+#two{
+    color: blue;
 }
 
 #board{

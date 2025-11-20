@@ -1,39 +1,60 @@
-const markX = "X"
-const markO = "O"
 
-const grid = [
-  ["-", "-", "-"],
-  ["-", "-", "-"],
-  ["-", "-", "-"]
-]
 
-function displayGrid (board) {
+function gameController() {
+  const grid = [
+    ["-", "-", "-"],
+    ["-", "-", "-"],
+    ["-", "-", "-"]
+  ]
+  
+  function displayGrid (board) {
   let output = "";
   for ( i = 0; i < board.length; i++){
     output += board[i].join(" ") + "\n";
   }
   console.log(output);
-}
+  }
+  
+  const playerOne = {
 
-function gameController() {
-
-  let playerOneName ="One"
-
-  let playerOne = {
-
-    name: playerOneName,
-    mark: markX,
+    name: "",
+    mark: "",
 
   };
 
-  let playerTwoName = "Two"
+  const playerTwo = {
 
-  let playerTwo = {
-
-    name: playerTwoName,
-    mark: markO,
+    name: " ",
+    mark: " ",
 
   };
+  
+  const button = document.getElementById("submitButton")
+  button.addEventListener('click', function(){
+
+    const playerOneName = document.getElementById("textbox-1")
+    const playerOneMark = document.getElementById("dropdown-1")
+    const playerTwoName = document.getElementById("textbox-2")
+    const playerTwoMark= document.getElementById("dropdown-2")
+
+    playerOne.name = playerOneName.value
+    playerOne.mark = playerOneMark.value
+    playerTwo.name = playerTwoName.value
+    playerTwo.mark = playerTwoMark.value
+
+    playerOneName.remove()
+    playerOneMark.remove()
+    playerTwoName.remove()
+    playerTwoMark.remove()
+    button.remove()
+
+    const playerOneTitle = document.getElementById("one")
+    const playerTwoTitle = document.getElementById("two")
+
+    playerOneTitle.textContent +=  `${playerOne.name} "${playerOne.mark}"`
+    playerTwoTitle.textContent +=  `${playerTwo.name} "${playerTwo.mark}"`
+  })
+
 
   const placeMark = (a, b, player) => {
     if(player == playerOne && grid[a][b] == '-') {
@@ -71,6 +92,25 @@ function gameController() {
   }
 }
 
-let game = gameController();
-game.playRound(1,2);
-game.playRound(1,1);
+//  const game = gameController();
+
+//   const firstPlayer = game.playerOne.name
+//   const secondPlayer = game.playerTwo
+
+//   console.log(firstPlayer)
+
+
+// function screenController() {
+
+//   const game = gameController();
+
+//   const firstPlayer = game.playerOne
+//   const secondPlayer = game.playerTwo
+
+//   console.log(firstPlayer)
+
+  
+
+// }
+
+// let screen = screenController();
