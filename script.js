@@ -1,5 +1,3 @@
-
-
 function gameController() {
   const grid = [
     ["-", "-", "-"],
@@ -8,11 +6,11 @@ function gameController() {
   ]
   
   function displayGrid (board) {
-  let output = "";
-  for ( i = 0; i < board.length; i++){
-    output += board[i].join(" ") + "\n";
-  }
-  console.log(output);
+    let output = "";
+    for ( i = 0; i < board.length; i++){
+      output += board[i].join(" ") + "\n";
+    }
+    console.log(output);
   }
   
   const playerOne = {
@@ -29,33 +27,6 @@ function gameController() {
 
   };
   
-  const button = document.getElementById("submitButton")
-  button.addEventListener('click', function(){
-
-    const playerOneName = document.getElementById("textbox-1")
-    const playerOneMark = document.getElementById("dropdown-1")
-    const playerTwoName = document.getElementById("textbox-2")
-    const playerTwoMark= document.getElementById("dropdown-2")
-
-    playerOne.name = playerOneName.value
-    playerOne.mark = playerOneMark.value
-    playerTwo.name = playerTwoName.value
-    playerTwo.mark = playerTwoMark.value
-
-    playerOneName.remove()
-    playerOneMark.remove()
-    playerTwoName.remove()
-    playerTwoMark.remove()
-    button.remove()
-
-    const playerOneTitle = document.getElementById("one")
-    const playerTwoTitle = document.getElementById("two")
-
-    playerOneTitle.textContent +=  `${playerOne.name} "${playerOne.mark}"`
-    playerTwoTitle.textContent +=  `${playerTwo.name} "${playerTwo.mark}"`
-  })
-
-
   const placeMark = (a, b, player) => {
     if(player == playerOne && grid[a][b] == '-') {
       return grid[a][b] = playerOne.mark
@@ -89,28 +60,44 @@ function gameController() {
   return {
     playRound,
     getActivePlayer,
+    playerOne,
+    playerTwo
   }
 }
 
-//  const game = gameController();
+function screenController() {
 
-//   const firstPlayer = game.playerOne.name
-//   const secondPlayer = game.playerTwo
+  const game = gameController();
 
-//   console.log(firstPlayer)
+  const firstPlayer = game.playerOne
+  const secondPlayer = game.playerTwo
 
+  const button = document.getElementById("submitButton")
+  button.addEventListener('click', function(){
 
-// function screenController() {
+    const playerOneName = document.getElementById("textbox-1")
+    const playerOneMark = document.getElementById("dropdown-1")
+    const playerTwoName = document.getElementById("textbox-2")
+    const playerTwoMark= document.getElementById("dropdown-2")
 
-//   const game = gameController();
+    firstPlayer.name = playerOneName.value
+    firstPlayer.mark = playerOneMark.value
+    secondPlayer.name = playerTwoName.value
+    secondPlayer.mark = playerTwoMark.value
 
-//   const firstPlayer = game.playerOne
-//   const secondPlayer = game.playerTwo
+    playerOneName.remove()
+    playerOneMark.remove()
+    playerTwoName.remove()
+    playerTwoMark.remove()
+    button.remove()
 
-//   console.log(firstPlayer)
+    const playerOneTitle = document.getElementById("one")
+    const playerTwoTitle = document.getElementById("two")
 
-  
+    playerOneTitle.textContent +=  `${firstPlayer.name} "${firstPlayer.mark}"`
+    playerTwoTitle.textContent +=  `${secondPlayer.name} "${secondPlayer.mark}"`
+  })
 
-// }
+}
 
-// let screen = screenController();
+let screen = screenController();
