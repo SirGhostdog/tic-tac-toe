@@ -56,14 +56,13 @@ function gameController() {
     printNewRound();
   }
 
-  printNewRound();
+  // printNewRound();
 
   return {
     playRound,
     getActivePlayer,
-    switchPlayer,
     playerOne,
-    playerTwo
+    playerTwo,
   }
 }
 
@@ -102,18 +101,30 @@ function screenController() {
   })
 
   const gameTile = document.getElementsByClassName("boardSquare")
+  
+  let counter = 0   
+    for( let row = 0; row < 3; row++ ){
+      for( let column = 0; column < 3; column++ ){
+        gameTile[counter].setAttribute("data-row", row)
+        gameTile[counter].setAttribute("data-column", column)
+        counter++
+      }
+    }
+  
+
   for (const tile of gameTile) {
-  tile.addEventListener("click", function() {
+    tile.addEventListener("click", function() {
 
-    let playerUp = game.getActivePlayer().mark
+      let playerUp = game.getActivePlayer().mark
+      const htmlRow = tile.getAttribute('data-row')
+      const htmlColumn = tile.getAttribute('data-column')
 
-    if(tile.textContent != ""){
-      alert("Try another square")
-    } else {
-      tile.textContent += playerUp
-      game.switchPlayer()}
-
-      console.log(game.getActivePlayer().name)
+      if(tile.textContent != ""){
+        alert("Try another square")
+      } else {
+        tile.textContent += playerUp,
+        game.playRound(htmlRow,htmlColumn)
+        } 
     })
   }
 }
