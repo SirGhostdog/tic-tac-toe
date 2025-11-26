@@ -1,4 +1,5 @@
 function gameController() {
+
   const grid = [
     ["-", "-", "-"],
     ["-", "-", "-"],
@@ -60,6 +61,7 @@ function gameController() {
   return {
     playRound,
     getActivePlayer,
+    switchPlayer,
     playerOne,
     playerTwo
   }
@@ -96,8 +98,24 @@ function screenController() {
 
     playerOneTitle.textContent +=  `${firstPlayer.name} "${firstPlayer.mark}"`
     playerTwoTitle.textContent +=  `${secondPlayer.name} "${secondPlayer.mark}"`
+
   })
 
+  const gameTile = document.getElementsByClassName("boardSquare")
+  for (const tile of gameTile) {
+  tile.addEventListener("click", function() {
+
+    let playerUp = game.getActivePlayer().mark
+
+    if(tile.textContent != ""){
+      alert("Try another square")
+    } else {
+      tile.textContent += playerUp
+      game.switchPlayer()}
+
+      console.log(game.getActivePlayer().name)
+    })
+  }
 }
 
 let screen = screenController();
