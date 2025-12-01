@@ -50,13 +50,48 @@ function gameController() {
     console.log(`${getActivePlayer().name}'s turn.`)
   }
 
+  winCheck = () => {
+    if (grid[0].every(val => val == 'X')){
+      console.log('X wins')
+    } else if(grid[0].every(val => val == 'O')){
+      console.log('O wins')
+    } else if(grid[1].every(val => val == 'X')){
+      console.log('X wins')
+    } else if(grid[1].every(val => val == 'O')){
+      console.log('O wins')
+    } else if(grid[2].every(val => val == 'X')){
+      console.log('X wins')
+    } else if(grid[2].every(val => val == 'O')){
+      console.log('O wins')
+    } else if(grid[0][0].includes('X') && grid[1][0].includes('X') && grid[2][0].includes('X')){
+      console.log('X wins')
+    } else if(grid[0][0].includes('O') && grid[1][0].includes('O') && grid[2][0].includes('O')){
+      console.log('O wins')
+    } else if(grid[0][1].includes('X') && grid[1][1].includes('X') && grid[2][1].includes('X')){
+      console.log('X wins') 
+    } else if(grid[0][1].includes('O') && grid[1][1].includes('O') && grid[2][1].includes('O')){
+      console.log('O wins')
+    } else if(grid[0][2].includes('X') && grid[1][2].includes('X') && grid[2][2].includes('X')){
+      console.log('X wins') 
+    } else if(grid[0][2].includes('O') && grid[1][2].includes('O') && grid[2][2].includes('O')){
+      console.log('O wins')
+    } else if(grid[0][0].includes('X') && grid[1][1].includes('X') && grid[2][2].includes('X')){
+      console.log('X wins') 
+    } else if(grid[0][0].includes('O') && grid[1][1].includes('O') && grid[2][2].includes('O')){
+      console.log('O wins')
+    } else if(grid[0][2].includes('X') && grid[1][1].includes('X') && grid[2][0].includes('X')){
+      console.log('X wins') 
+    } else if(grid[0][2].includes('O') && grid[1][1].includes('O') && grid[2][0].includes('O')){
+      console.log('O wins')
+    } 
+  }
+
   const playRound = (a, b) => {
     placeMark(a, b, getActivePlayer())
+    winCheck();
     switchPlayer();
     printNewRound();
   }
-
-  // printNewRound();
 
   return {
     playRound,
@@ -101,7 +136,10 @@ function screenController() {
   })
 
   const gameTile = document.getElementsByClassName("boardSquare")
-  
+
+  //Nested for-loop that iterates through each column of each
+  //row and then appends a data attribute to each div on the HTML
+
   let counter = 0   
     for( let row = 0; row < 3; row++ ){
       for( let column = 0; column < 3; column++ ){
@@ -111,7 +149,7 @@ function screenController() {
       }
     }
   
-
+  
   for (const tile of gameTile) {
     tile.addEventListener("click", function() {
 
