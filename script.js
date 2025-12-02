@@ -52,37 +52,37 @@ function gameController() {
 
   const winCheck = () => {
     if (grid[0].every(val => val == 'X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[0].every(val => val == 'O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[1].every(val => val == 'X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[1].every(val => val == 'O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[2].every(val => val == 'X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[2].every(val => val == 'O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[0][0].includes('X') && grid[1][0].includes('X') && grid[2][0].includes('X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[0][0].includes('O') && grid[1][0].includes('O') && grid[2][0].includes('O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[0][1].includes('X') && grid[1][1].includes('X') && grid[2][1].includes('X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[0][1].includes('O') && grid[1][1].includes('O') && grid[2][1].includes('O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[0][2].includes('X') && grid[1][2].includes('X') && grid[2][2].includes('X')){
-      return 'X wins' 
+      return `${playerOne.name} wins!` 
     } else if(grid[0][2].includes('O') && grid[1][2].includes('O') && grid[2][2].includes('O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[0][0].includes('X') && grid[1][1].includes('X') && grid[2][2].includes('X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[0][0].includes('O') && grid[1][1].includes('O') && grid[2][2].includes('O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } else if(grid[0][2].includes('X') && grid[1][1].includes('X') && grid[2][0].includes('X')){
-      return 'X wins'
+      return `${playerOne.name} wins!`
     } else if(grid[0][2].includes('O') && grid[1][1].includes('O') && grid[2][0].includes('O')){
-      return 'O wins'
+      return `${playerTwo.name} wins!`
     } 
   }
 
@@ -150,6 +150,9 @@ function screenController() {
       }
     }
   
+  const winMessage = document.createElement("div")
+  const bottom = document.getElementById("bottom")
+
   for (const tile of gameTile) {
     tile.addEventListener("click", function() {
 
@@ -165,11 +168,24 @@ function screenController() {
 
       game.playRound(htmlRow,htmlColumn)
 
-      const winMessage = document.createElement("div")
+      
+      winMessage.setAttribute("id", "winMessage")
       winMessage.textContent = game.winCheck()
-      const bottom = document.getElementById("bottom")
+      
+      
       bottom.appendChild(winMessage)
+     
+      if(winMessage.textContent !== ""){
+        const resetButton = document.createElement("button")
+        resetButton.setAttribute("id", "resetButton")
+        resetButton.textContent = "Reset"
+        bottom.appendChild(resetButton)
+      } 
+    
+      resetButton.addEventListener("click", function resetGame(){
+      window.location.reload()
     }) 
+    })
   }
 }
 

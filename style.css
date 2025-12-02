@@ -33,12 +33,6 @@ body{
     margin: 30px;
 }
 
-/* #one,
-#two{
-    display: flex;
-    flex-direction: column;
-} */
-
 #one{
     color: red;
 }
@@ -60,4 +54,22 @@ body{
     border: 1px black solid;
     font-size: 40px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+}
+
+#winMessage{
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+#resetButton{
+    width: 80px;
+    height: 30px;
 }
